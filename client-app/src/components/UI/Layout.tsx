@@ -1,10 +1,32 @@
 import './Layout.css'
-import React, { PropsWithChildren } from 'react'
+import { Link, Outlet } from 'react-router-dom'
 
-export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
+const links = [
+  { to: '/', text: 'See messages' },
+  { to: '/add', text: 'Add message' },
+]
+
+const Header = () => {
+  return (
+    <header>
+      <nav>
+        <ul>
+          {links.map((link) => (
+            <Link key={link.to} to={link.to}>
+              <li>{link.text}</li>
+            </Link>
+          ))}
+        </ul>
+      </nav>
+    </header>
+  )
+}
+
+export const Layout = () => {
   return (
     <div className='layout'>
-        {children}
+        <Header />
+        <Outlet />
     </div>
   )
 }

@@ -1,11 +1,11 @@
 import MainRouter from './routes/MainRouter'
-import Layout from './components/UI/Layout'
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
-    <Layout>
+    <BrowserRouter>
       <MainRouter />
-    </Layout>
+    </BrowserRouter>
   )
 }
 

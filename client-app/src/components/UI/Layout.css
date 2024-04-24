@@ -1,9 +1,35 @@
 .layout {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     background-color: black;
     color: white;
+    padding: 1em;
+}
+
+.layout > * {
+    color: white;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    margin-bottom: 1em;
+
+    ul {
+        display: flex;
+        list-style: none;
+        gap: 1em;
+
+        a {
+            color: black;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
 }

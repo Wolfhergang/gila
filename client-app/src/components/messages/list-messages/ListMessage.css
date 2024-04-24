@@ -1,0 +1,24 @@
+.list-messages {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+
+    .message-record {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        div:first-child {
+            flex: 2;
+        }
+
+
+        div {
+            flex: 1;
+            white-space: nowrap;
+        }
+    }
+}

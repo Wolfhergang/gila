@@ -1,22 +1,19 @@
 import {
-  createBrowserRouter, 
-  RouterProvider
+  Route,
+  Routes,
 } from "react-router-dom";
 
 import MessagesPage from "./messages";
+import AddMessagePage from "./messages/add";
+import Layout from "../components/UI/Layout";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    Component: MessagesPage,
-  },
-  {
-    path: "/add",
-    element: <div>Add component</div>,
-  },
-]);
+const MainRouter = () => (
+  <Routes>
+    <Route path="/" element={<Layout />}>
+      <Route index element={<MessagesPage />} />
+      <Route path="add" element={<AddMessagePage />} />
+    </Route>
+  </Routes>
+)
 
-const MainRouter = () => <RouterProvider router={router} />
-
-
-export default MainRouter
+export default MainRouter;

@@ -1,0 +1,15 @@
+.create-message {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+    input, select {
+        margin-left: 0.5em;
+        min-width: 400px;
+    }
+
+    button {
+        margin-left: 0.5em;
+        width: 100px;
+    }
+}

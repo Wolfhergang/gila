@@ -61,6 +61,8 @@ const DB = {
         async fetch(){
             const logs = await readFromFile('logs/logs.txt') as string
 
+            if(logs.length === 0) return []
+
             const logsArray = logs.trim().split('\n').map(log => JSON.parse(log))
 
             return logsArray

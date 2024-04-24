@@ -17,7 +17,9 @@ const useMessages = () => {
 
     const addMessage = async (message: NewMessage) => {
         await Message.create(message);
-        getMessages();
+        await getMessages();
+        
+        return;
     }
     
     return { messages, addMessage };

@@ -40,8 +40,6 @@ const createMessage : RequestHandler = async (req, res) => {
 const getMessages : RequestHandler = async (_, res) => {
     const logs = await DB.Logs.fetch()
         
-    
-
     return res.status(200).json(logs)
 }
 

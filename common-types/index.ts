@@ -10,5 +10,3 @@ export type {
     NotificationChannel,
     User
 }
-
-console.log('common/index.ts');
