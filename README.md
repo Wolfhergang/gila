@@ -1,6 +1,8 @@
 Notes:
 - I did not go for 100% test coverage, just used the tests for TDD on some parts of the code that where tricky to blindly develop.
-
+- It might not be a great idea to async write into the DB in a real world scenario due to connection pooling and other issues, but for this case it should be fine.
+- Had no time to add the scripts to build and run the project as a monorepo, so you will have to run the frontend and backend separately hehe... sorry.
+- There is a chance that either the frontend or the backend will not run using the builds, so you might have to run them in dev mode, to be honest I did not test the builds.
 
 Requirements:
 
