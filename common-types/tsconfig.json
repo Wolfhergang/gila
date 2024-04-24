@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "outDir": "./dist",
+    "module": "ESNext",
+    "moduleResolution": "node",
+  },
+  "include": [
+    "**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "target": "es2017",
+  "module": "ESNext",
+  "lib": [
+    "es2017"
+  ]
+}
