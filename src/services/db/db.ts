@@ -2,11 +2,7 @@
 import users from "./fake_data/users"
 import { readFromFile, appendToFile } from "../files/files"
 import { User } from "../../types/user.types"
-
-class FAKE_DB_EXCEPTION extends Error {}
-
-const FILE_PATH = __filename.split("/").slice(0, -1).join("/")
-const LOG_FILE_PATH = `${FILE_PATH}/fake_data/logs.txt`
+import logger from "../logger"
 
 // This is a DTO I promise haha
 const DB = {
@@ -62,10 +58,14 @@ const DB = {
     },
     Logs: {
         async fetch(){
-            const logs = await readFromFile('src/services/db/fake_data/logs.txt')
+            const logs = await readFromFile('logs/logs.txt')
             return logs
         },
         async insert(log: string){
+            const LOG_FILE_PATH = 'logs/logs.txt'
+
+            logger.info('Inserting log:', log)
+            
             await appendToFile(LOG_FILE_PATH, `\n${log}`)
             return log
         }
