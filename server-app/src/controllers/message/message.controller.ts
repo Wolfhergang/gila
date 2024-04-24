@@ -4,6 +4,7 @@ import { MessageLog } from "common-types"
 import { getUUID } from "../../utils/string"
 import { Category } from "common-types"
 import { getUsersWithCategory } from "../../repositories/user/user.repository"
+import logger from "../../services/logger"
 
 const createMessage : RequestHandler = async (req, res) => {
     const { message, category } = req.body as { message: string, category: Category }
@@ -26,8 +27,14 @@ const createMessage : RequestHandler = async (req, res) => {
                     channel,
                     userId: user.id
                 }
+                
+                // store the message log
+                await DB.Logs.insert(JSON.stringify(newMessageLog))
 
-                return await DB.Logs.insert(JSON.stringify(newMessageLog))
+                // Send it to a queue or something magical to deal with the message.... or not
+                logger.info(`\nMessage sent by ${channel} for user ${user.id}\n`)
+
+                return  newMessageLog
             })
         )
     })
