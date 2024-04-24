@@ -6,7 +6,6 @@ import { Category } from "../../types/category.types"
 import { getUsersWithCategory } from "../../repositories/user/user.repository"
 
 const createMessage : RequestHandler = async (req, res) => {
-    console.log('req', req.body)
     const { message, category } = req.body as { message: string, category: Category }
 
     if(!message || !category) return res.status(400).json({ message: "Missing required fields" })
@@ -38,8 +37,12 @@ const createMessage : RequestHandler = async (req, res) => {
     return res.status(200).json({ ok: true })
 }
 
-const getMessages : RequestHandler =  (req, res) => {
+const getMessages : RequestHandler = async (req, res) => {
+    const logs = await DB.Logs.fetch()
+        
+    
 
+    return res.status(200).json(logs)
 }
 
 export default {

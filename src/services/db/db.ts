@@ -58,8 +58,11 @@ const DB = {
     },
     Logs: {
         async fetch(){
-            const logs = await readFromFile('logs/logs.txt')
-            return logs
+            const logs = await readFromFile('logs/logs.txt') as string
+
+            const logsArray = logs.trim().split('\n').map(log => JSON.parse(log))
+
+            return logsArray
         },
         async insert(log: string){
             const LOG_FILE_PATH = 'logs/logs.txt'

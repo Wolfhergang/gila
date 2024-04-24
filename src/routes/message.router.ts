@@ -26,4 +26,7 @@ const messageRouter = express.Router({
 // add a new message
 messageRouter.post('/', deco(messageController.createMessage, 'createMessage'));
 
+// get all messages
+messageRouter.get('/', deco(messageController.getMessages, 'getMessages'));
+
 export default messageRouter;
