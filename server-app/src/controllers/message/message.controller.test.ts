@@ -1,16 +1,10 @@
 import { Category } from "common-types";
 import messageController from "./message.controller";
+import { sendNotification } from "../../services/notification";
 
-jest.mock("../../services/db", () => ({
-    Logs: {
-        insert: jest.fn()
-    },
-    User: {
-        get: jest.fn()
-    }
+jest.mock("../../services/notification", () => ({
+    sendNotification: jest.fn()
 }));
-
-import DB from "../../services/db";
 
 const mockResponse = {
     status: jest.fn().mockReturnThis(),
@@ -37,11 +31,6 @@ describe("messageController", () => {
         });
 
         it("should be able to insert a message on a correct post", async () => {
-            (DB.User.get as jest.Mock).mockResolvedValueOnce(Promise.resolve([{
-                id: "test-id",
-                channels: ["email"]
-            }]));
-
             const mockRequest: { body: { message: string, category: Category } } = {
                 body: {
                     message: "I am a test!!",
@@ -51,8 +40,8 @@ describe("messageController", () => {
     
             await messageController.createMessage(mockRequest as any, mockResponse as any, () => {});
 
-            expect(DB.Logs.insert).toHaveBeenCalledTimes(1);
-            expect(DB.Logs.insert).toHaveBeenCalledWith(expect.any(String));
+            expect(sendNotification).toHaveBeenCalledTimes(1);
+            expect(sendNotification).toHaveBeenCalledWith("I am a test!!", "Sports");
             expect(mockResponse.status).toHaveBeenCalledWith(200);
             expect(mockResponse.json).toHaveBeenCalledTimes(1);
         });

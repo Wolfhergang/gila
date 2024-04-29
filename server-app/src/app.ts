@@ -2,6 +2,7 @@ import express, { NextFunction, Response, Request } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import mainRouter from './routes';
+import { processQueues } from './services/queue';
 
 const app = express(); // New express instance
 const port = 9000; // Port number
@@ -16,6 +17,9 @@ app.listen(port, () => {
   // Callback function when server is successfully started
   console.log(`Hello from http://localhost:${port}`);
 });
+
+// queue processing interval
+setInterval(processQueues, 1000);
 
 // Health check endpoint
 app.get('/', (_, res) => {

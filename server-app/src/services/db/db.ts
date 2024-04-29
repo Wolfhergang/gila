@@ -70,8 +70,6 @@ const DB = {
         async insert(log: string){
             const LOG_FILE_PATH = 'logs/logs.txt'
 
-            logger.info('Inserting log:', log)
-            
             await appendToFile(LOG_FILE_PATH, `\n${log}`)
             return log
         }
